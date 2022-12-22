@@ -12,5 +12,7 @@ members = [
 resolver = "2"
 
 [dependencies]
-bevy = { version = "0.9.1", features = ["dynamic"] }
+bevy = { version = "0.9.1" }
 player = { version = "0.1.0", path = "crates/player" }
+
+[target.'cfg(windows)'.dependencies]
