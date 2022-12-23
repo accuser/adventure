@@ -1,19 +1,15 @@
 mod components;
-mod resources;
-mod systems;
+mod plugins;
 
 use bevy::prelude::*;
 use components::*;
-use systems::*;
+use plugins::*;
 
 pub struct PlayerPlugin;
 
 impl Plugin for PlayerPlugin {
     fn build(&self, app: &mut App) {
-        app.add_startup_system(init)
-            .add_system(animate_sprite)
-            .add_system(keyboard_input_system)
-            .add_system(sprite_movement);
+        app.add_startup_system(init).add_plugins(Plugins);
     }
 }
 
@@ -26,7 +22,6 @@ fn init(
     let texture_atlas =
         TextureAtlas::from_grid(texture_handle, Vec2::new(32.0, 32.0), 20, 1, None, None);
     let texture_atlas_handle = texture_atlases.add(texture_atlas);
-    // Use only the subset of sprites in the sheet that make up the run animation
 
     commands.spawn((
         Player,

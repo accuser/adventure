@@ -9,6 +9,9 @@ pub struct AnimationIndices {
 #[derive(Component, Deref, DerefMut)]
 pub struct AnimationTimer(pub Timer);
 
+#[derive(Component)]
+pub struct Player;
+
 #[derive(Component, Clone, Copy)]
 pub enum PlayerDirection {
     Down,
@@ -22,7 +25,5 @@ pub enum PlayerState {
     Idle,
     Dancing,
     Walking,
+    Running,
 }
-
-#[derive(Component)]
-pub struct Player;
