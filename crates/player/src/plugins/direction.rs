@@ -11,13 +11,7 @@ impl Plugin for DirectionPlugin {
 
 fn update_direction(keyboard_input: Res<Input<KeyCode>>, mut query: Query<&mut PlayerDirection>) {
     query.iter_mut().for_each(|mut direction| {
-        if keyboard_input.any_pressed([
-            KeyCode::S,
-            KeyCode::Z,
-            KeyCode::Down,
-            KeyCode::Numpad0,
-            KeyCode::Numpad2,
-        ]) {
+        if keyboard_input.any_pressed([KeyCode::S, KeyCode::Down, KeyCode::Numpad2]) {
             *direction = PlayerDirection::Down
         } else if keyboard_input.any_pressed([KeyCode::A, KeyCode::Left, KeyCode::Numpad4]) {
             *direction = PlayerDirection::Left
@@ -25,6 +19,8 @@ fn update_direction(keyboard_input: Res<Input<KeyCode>>, mut query: Query<&mut P
             *direction = PlayerDirection::Right
         } else if keyboard_input.any_pressed([KeyCode::W, KeyCode::Up, KeyCode::Numpad8]) {
             *direction = PlayerDirection::Up
+        } else if keyboard_input.any_pressed([KeyCode::Z, KeyCode::Numpad0]) {
+            *direction = PlayerDirection::Down
         }
     })
 }
